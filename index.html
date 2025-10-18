@@ -1,40 +1,178 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My GitHub Pages Site</title>
-    <style>
-        body { font-family: Arial, sans-serif; text-align: center; padding: 50px; }
-        header { background: #f4f4f4; padding: 20px; border-radius: 8px; }
-        footer { margin-top: 50px; font-size: 0.9em; color: #555; }
-        a { color: inherit; text-decoration: none; }
-        a:hover { text-decoration: underline; }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Name - Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <h1>Welcome to My GitHub Pages Website</h1>
-        <p>This is a sample static website hosted for free using GitHub Pages.</p>
-    </header>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <h1 class="nav-logo">Your Name</h1>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="#home" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="#portfolio" class="nav-link">Portfolio</a></li>
+                <li class="nav-item"><a href="#resume" class="nav-link">Resume</a></li>
+                <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
 
-    <section>
-        <h2>About This Project</h2>
-        <p>This page is a simple example of what you can display on your site. You can add images, links, and more sections as needed.</p>
-        <p>Feel free to customize this template with your own content!</p>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <img src="images/profile-photo.jpg" alt="Profile Photo" class="profile-photo">
+            <h1 class="hero-title">Hello, I'm <span class="highlight">Your Name</span></h1>
+            <p class="hero-subtitle">Your Professional Title</p>
+            <p class="hero-description">Brief description about yourself and what you do.</p>
+            <div class="hero-buttons">
+                <a href="#contact" class="btn btn-primary">Get In Touch</a>
+                <a href="#resume" class="btn btn-secondary">View Resume</a>
+            </div>
+        </div>
     </section>
 
-    <section>
-        <h2>Get Started</h2>
-        <ul style="list-style-type: none; padding: 0;">
-            <li>✔️ Add more HTML pages</li>
-            <li>✔️ Create a navigation bar</li>
-            <li>✔️ Style the site with CSS</li>
-        </ul>
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Write a compelling description about yourself, your background, skills, and what makes you unique. This is your chance to tell your story and connect with visitors.</p>
+                    <p>You can add multiple paragraphs here to fully describe your experience, education, and professional journey.</p>
+                </div>
+                <div class="skills">
+                    <h3>Skills & Expertise</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Skill 1</span>
+                        <span class="skill-tag">Skill 2</span>
+                        <span class="skill-tag">Skill 3</span>
+                        <span class="skill-tag">Skill 4</span>
+                        <span class="skill-tag">Skill 5</span>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <footer>
-        <p>© 2025 My GitHub Pages Project | <a href="https://github.com">View on GitHub</a></p>
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio">
+        <div class="container">
+            <h2 class="section-title">Portfolio</h2>
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <img src="images/project1.jpg" alt="Project 1">
+                    <div class="portfolio-overlay">
+                        <h3>Project Title 1</h3>
+                        <p>Brief description of the project</p>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="images/project2.jpg" alt="Project 2">
+                    <div class="portfolio-overlay">
+                        <h3>Project Title 2</h3>
+                        <p>Brief description of the project</p>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="images/project3.jpg" alt="Project 3">
+                    <div class="portfolio-overlay">
+                        <h3>Project Title 3</h3>
+                        <p>Brief description of the project</p>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="images/project4.jpg" alt="Project 4">
+                    <div class="portfolio-overlay">
+                        <h3>Project Title 4</h3>
+                        <p>Brief description of the project</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resume Section -->
+    <section id="resume" class="resume">
+        <div class="container">
+            <h2 class="section-title">Resume</h2>
+            <div class="resume-container">
+                <div class="resume-header">
+                    <p>Download or view my complete resume below:</p>
+                    <div class="resume-buttons">
+                        <a href="files/resume.pdf" class="btn btn-primary" target="_blank">
+                            <i class="fas fa-download"></i> Download PDF
+                        </a>
+                        <button onclick="toggleResumeView()" class="btn btn-secondary">
+                            <i class="fas fa-eye"></i> <span id="resume-toggle-text">View Online</span>
+                        </button>
+                    </div>
+                </div>
+                <div id="resume-viewer" class="resume-viewer" style="display: none;">
+                    <iframe src="files/resume.pdf" width="100%" height="800px"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h3>Email</h3>
+                            <p>your.email@example.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h3>Phone</h3>
+                            <p>(123) 456-7890</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h3>Location</h3>
+                            <p>Your City, State</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="social-links">
+                    <h3>Connect With Me</h3>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Your Name. All rights reserved.</p>
+            <p>Built with ❤️ using GitHub Pages</p>
+        </div>
     </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
