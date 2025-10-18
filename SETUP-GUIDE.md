@@ -1,157 +1,123 @@
-# 📖 Quick Setup Guide for Your Organization
+# Portfolio Generator Setup Guide
 
-## 🎯 Goal
-Help team members create professional portfolio websites using GitHub's free hosting in under 30 minutes.
+Welcome to the Portfolio Generator! This tool allows organization members to create professional portfolios with file uploads that generate a complete ZIP package for GitHub Pages deployment.
 
-## 🚀 Step-by-Step Instructions
+## 🚀 Quick Start
 
-### For the Person Setting Up Their Portfolio:
+1. **Open the Generator**: Open `portfolio-generator.html` in your web browser
+2. **Fill in Your Information**: Complete all the required fields
+3. **Upload Your Files**: Upload your profile photo, resume, and experience images
+4. **Choose Your Theme**: Select from 6 professional color themes
+5. **Generate & Download**: Get a complete ZIP file with everything you need
 
-#### 1. Get This Template (5 minutes)
-- Go to the GitHub repository containing this template
-- Click the green "Code" button
-- Download as ZIP file
-- Extract the files to your computer
-
-#### 2. Create Your GitHub Account & Repository (5 minutes)
-- Sign up at [github.com](https://github.com)
-- Create a new repository named: `your-username.github.io`
-- Make sure it's **Public** (required for free hosting)
-
-#### 3. Upload Your Files (5 minutes)
-- Drag and drop all template files into your repository
-- Click "Commit changes"
-
-#### 4. Enable GitHub Pages (2 minutes)
-- Go to Settings → Pages
-- Source: "Deploy from a branch"
-- Branch: "main"
-- Folder: "/ (root)"
-- Save
-
-#### 5. Use the Portfolio Generator (10 minutes)
-- Open `portfolio-generator.html` in your browser
-- Fill out the form with your information:
-  - Name and title
-  - About me section
-  - Skills list
-  - Experience/projects with descriptions
-  - Contact information
-- Choose your color theme
-- Download the generated files
-
-#### 6. Add Your Files
-- **Profile Photo**: Upload to `images/` folder as `profile-photo.jpg`
-- **Resume**: Upload to `files/` folder as `resume.pdf`
-- **Experience Images**: Upload to `images/` folder as specified in generator
-
-## 📸 Image Requirements
+## 📁 What You'll Upload
 
 ### Profile Photo
-- **Size**: 400x400 pixels (square)
-- **Format**: JPG or PNG
-- **Name**: `profile-photo.jpg`
-- **Tips**: Professional headshot, good lighting, clean background
-
-### Experience Images
-- **Size**: 600x400 pixels (landscape)
-- **Format**: JPG or PNG
-- **Names**: As specified in the portfolio generator form
-- **Tips**: Screenshots of work, project photos, or relevant visuals
+- **Format**: JPG, PNG, or WEBP
+- **Size**: Square format (400x400 pixels recommended)
+- **Requirements**: Professional headshot, max 5MB
+- **Usage**: Displayed prominently on your portfolio homepage
 
 ### Resume
 - **Format**: PDF only
-- **Name**: `resume.pdf`
-- **Size**: Under 10MB
-- **Tips**: Current, well-formatted, ATS-friendly
+- **Requirements**: Professional formatting, up-to-date, max 10MB
+- **Usage**: Downloadable from your portfolio site
 
-## 🎨 Customization Tips
+### Experience Images
+- **Format**: JPG, PNG, or WEBP
+- **Size**: Landscape format (600x400 pixels recommended)
+- **Requirements**: Project screenshots, photos, or relevant images, max 5MB each
+- **Usage**: Displayed alongside your experience descriptions
 
-### Essential Edits (Must Do):
-1. **Personal Information**: Name, title, email, phone
-2. **About Section**: 2-3 sentences about yourself
-3. **Experience**: Projects with titles, images, and descriptions
-4. **Skills**: Replace with your actual skills
-5. **Contact**: Real contact information
-6. **Social Links**: LinkedIn, GitHub profiles
+## 🎨 Features
 
-### Optional Edits:
-1. **Colors**: Use the color picker in the generator
-2. **Sections**: Add/remove experiences as needed
-3. **Add Content**: More projects, testimonials, etc.
+### File Upload System
+- **Drag & Drop**: Simply drag files onto the upload areas
+- **Click to Upload**: Click upload areas to browse for files
+- **Preview**: See uploaded files before generating
+- **Validation**: Automatic file type and size validation
 
-## ⚡ Quick Text Replacements
+### Theme Options
+- **Professional Blue**: Classic and trustworthy
+- **Nature Green**: Fresh and environmental
+- **Creative Purple**: Artistic and innovative
+- **Energetic Orange**: Bold and dynamic
+- **Modern Teal**: Contemporary and tech-focused
+- **Bold Red**: Strong and confident
 
-Using the Portfolio Generator, you'll input:
+### Generated Package
+Your ZIP file includes:
+- `index.html` - Complete responsive website
+- `style.css` - Themed styling
+- `script.js` - Interactive features
+- `images/` folder - All your uploaded images
+- `files/` folder - Your resume
+- `README.md` - Setup instructions
+- `SETUP.md` - GitHub Pages deployment guide
 
-```
-Name: John Smith
-Title: Software Developer
-About: Experienced developer with 5 years in web applications
-Email: john.smith@email.com
-Phone: (555) 123-4567
-Location: San Francisco, CA
-Skills: JavaScript, Python, React, etc.
-Experience 1: E-Commerce Platform Development
-Description 1: Built a full-stack e-commerce platform...
-```
+## 🔧 GitHub Pages Setup
 
-## 🔗 After Setup
+1. **Create Repository**: Name it `yourusername.github.io`
+2. **Upload Files**: Extract and upload all ZIP contents
+3. **Enable Pages**: Go to Settings > Pages
+4. **Go Live**: Your site will be at `https://yourusername.github.io`
 
-Your website will be live at: `https://your-username.github.io`
+## 📱 Responsive Design
 
-### Share Your Portfolio:
-- Add to LinkedIn profile
-- Include in email signatures
-- Share with potential employers
-- Use on business cards
+Your portfolio will look great on:
+- ✅ Desktop computers
+- ✅ Tablets
+- ✅ Mobile phones
+- ✅ All major browsers
 
-## 🆘 Common Issues & Solutions
+## 🎯 Best Practices
 
-**Problem**: Images not showing  
-**Solution**: Check file names match exactly (case-sensitive)
+### Profile Photo
+- Use a high-quality, professional headshot
+- Ensure good lighting and clear image
+- Square crop works best
+- Smile and look approachable
 
-**Problem**: Website not updating  
-**Solution**: Wait 5-10 minutes, then refresh browser
+### Experience Images
+- Use relevant project screenshots
+- Include before/after comparisons
+- Show your work in action
+- Maintain consistent image quality
 
-**Problem**: Resume not displaying  
-**Solution**: Ensure file is named `resume.pdf` in `files/` folder
+### Content Writing
+- Keep descriptions concise but informative
+- Use action verbs and quantifiable achievements
+- Highlight your unique skills and experiences
+- Proofread for spelling and grammar
 
-**Problem**: Mobile layout looks broken  
-**Solution**: Template is responsive - try refreshing or different browser
+## 🆘 Troubleshooting
 
-## 📞 Support Within Your Organization
+### File Upload Issues
+- **File too large**: Compress images or use smaller file sizes
+- **Wrong format**: Convert to supported formats (JPG, PNG, WEBP, PDF)
+- **Upload failed**: Check internet connection and try again
 
-### Who to Ask for Help:
-1. **Technical Setup**: [Your IT contact]
-2. **Content Writing**: [Your content/marketing team]
-3. **Design Questions**: [Your design team]
-4. **Resume Help**: [Your HR team]
+### Generation Issues
+- **Missing required fields**: Fill in all fields marked with *
+- **No files uploaded**: Ensure profile photo and resume are uploaded
+- **Download problems**: Try a different browser or clear cache
 
-### Before Asking for Help:
+## 📞 Support
+
+If you need help:
 1. Check this guide first
-2. Try the troubleshooting section
-3. Make sure you've waited 10 minutes for changes to appear
+2. Verify all required files are uploaded
+3. Ensure file formats and sizes are correct
+4. Contact your organization's admin for assistance
 
-## 🎯 Success Metrics
+## 🎉 Tips for Success
 
-A successful portfolio should have:
-- ✅ Professional appearance
-- ✅ All sections filled with real content
-- ✅ Working resume download
-- ✅ Professional profile photo
-- ✅ Accurate contact information
-- ✅ Mobile-friendly display
-- ✅ Meaningful experience descriptions
-
-## 📈 Next Steps After Launch
-
-1. **SEO**: Add meta descriptions for better search results
-2. **Analytics**: Set up Google Analytics to track visitors
-3. **Domain**: Consider buying a custom domain (yourname.com)
-4. **Content**: Regularly update with new projects and achievements
-5. **Backup**: Keep a local copy of all your files
+1. **Plan Your Content**: Write your descriptions before starting
+2. **Prepare Your Files**: Have all images and resume ready
+3. **Choose Quality Images**: Professional photos make a big difference
+4. **Review Before Generating**: Double-check all information
+5. **Test Your Site**: Preview before going live
 
 ---
 
-*This template was designed to be beginner-friendly and professional. No coding experience required!*
+*Generated with Portfolio Generator - Creating professional portfolios made easy!*
