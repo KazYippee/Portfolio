@@ -8,6 +8,45 @@ function generateHTML(data) {
     if (data.github) socialLinks.push(`<a href="${data.github}" class="social-icon"><i class="fab fa-github"></i></a>`);
     if (data.twitter) socialLinks.push(`<a href="${data.twitter}" class="social-icon"><i class="fab fa-twitter"></i></a>`);
     
+    // Generate experience items
+    let experienceItems = '';
+    if (data.experienceTitles && data.experienceTitles.length > 0) {
+        experienceItems = data.experienceTitles.map((title, index) => {
+            const image = data.experienceImages ? data.experienceImages[index] || `project${index + 1}.jpg` : `project${index + 1}.jpg`;
+            const description = data.experienceDescriptions ? data.experienceDescriptions[index] || 'Experience description will be added here.' : 'Experience description will be added here.';
+            
+            return `<div class="experience-item">
+                    <div class="experience-image">
+                        <img src="images/${image}" alt="${title}">
+                    </div>
+                    <div class="experience-content">
+                        <h3>${title}</h3>
+                        <p>${description}</p>
+                    </div>
+                </div>`;
+        }).join('\n                ');
+    } else {
+        // Default experience items if none provided
+        experienceItems = `<div class="experience-item">
+                    <div class="experience-image">
+                        <img src="images/project1.jpg" alt="Project 1">
+                    </div>
+                    <div class="experience-content">
+                        <h3>Project Title 1</h3>
+                        <p>Brief description of your first project or experience.</p>
+                    </div>
+                </div>
+                <div class="experience-item">
+                    <div class="experience-image">
+                        <img src="images/project2.jpg" alt="Project 2">
+                    </div>
+                    <div class="experience-content">
+                        <h3>Project Title 2</h3>
+                        <p>Brief description of your second project or experience.</p>
+                    </div>
+                </div>`;
+    }
+    
     return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,7 +64,7 @@ function generateHTML(data) {
             <ul class="nav-menu">
                 <li class="nav-item"><a href="#home" class="nav-link">Home</a></li>
                 <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
-                <li class="nav-item"><a href="#portfolio" class="nav-link">Portfolio</a></li>
+                <li class="nav-item"><a href="#experience" class="nav-link">Experience</a></li>
                 <li class="nav-item"><a href="#resume" class="nav-link">Resume</a></li>
                 <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
@@ -46,7 +85,7 @@ function generateHTML(data) {
             <p class="hero-description">${data.aboutMe}</p>
             <div class="hero-buttons">
                 <a href="#contact" class="btn btn-primary">Get In Touch</a>
-                <a href="#resume" class="btn btn-secondary">View Resume</a>
+                <a href="#experience" class="btn btn-secondary">View Experience</a>
             </div>
         </div>
     </section>
@@ -58,7 +97,6 @@ function generateHTML(data) {
             <div class="about-content">
                 <div class="about-text">
                     <p>${data.aboutMe}</p>
-                    <p>I'm passionate about creating exceptional digital experiences and bringing ideas to life through technology. With a focus on quality and innovation, I strive to deliver solutions that make a real impact.</p>
                 </div>
                 ${data.skills && data.skills.length > 0 ? `<div class="skills">
                     <h3>Skills & Expertise</h3>
@@ -70,39 +108,12 @@ function generateHTML(data) {
         </div>
     </section>
 
-    <!-- Portfolio Section -->
-    <section id="portfolio" class="portfolio">
+    <!-- Experience Section -->
+    <section id="experience" class="experience">
         <div class="container">
-            <h2 class="section-title">Portfolio</h2>
-            <div class="portfolio-grid">
-                <div class="portfolio-item">
-                    <img src="images/project1.jpg" alt="Project 1">
-                    <div class="portfolio-overlay">
-                        <h3>Project Title 1</h3>
-                        <p>Brief description of your first project</p>
-                    </div>
-                </div>
-                <div class="portfolio-item">
-                    <img src="images/project2.jpg" alt="Project 2">
-                    <div class="portfolio-overlay">
-                        <h3>Project Title 2</h3>
-                        <p>Brief description of your second project</p>
-                    </div>
-                </div>
-                <div class="portfolio-item">
-                    <img src="images/project3.jpg" alt="Project 3">
-                    <div class="portfolio-overlay">
-                        <h3>Project Title 3</h3>
-                        <p>Brief description of your third project</p>
-                    </div>
-                </div>
-                <div class="portfolio-item">
-                    <img src="images/project4.jpg" alt="Project 4">
-                    <div class="portfolio-overlay">
-                        <h3>Project Title 4</h3>
-                        <p>Brief description of your fourth project</p>
-                    </div>
-                </div>
+            <h2 class="section-title">Experience & Projects</h2>
+            <div class="experience-list">
+                ${experienceItems}
             </div>
         </div>
     </section>
@@ -465,50 +476,59 @@ section {
     font-weight: 500;
 }
 
-/* Portfolio Section */
-.portfolio-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+/* Experience Section */
+.experience-list {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.experience-item {
+    display: flex;
+    align-items: flex-start;
     gap: 2rem;
-}
-
-.portfolio-item {
-    position: relative;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-    transition: transform 0.3s ease;
-}
-
-.portfolio-item:hover {
-    transform: translateY(-10px);
-}
-
-.portfolio-item img {
-    width: 100%;
-    height: 250px;
-    object-fit: cover;
-}
-
-.portfolio-overlay {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: linear-gradient(transparent, rgba(0,0,0,0.8));
-    color: white;
+    margin-bottom: 3rem;
     padding: 2rem;
-    transform: translateY(100%);
-    transition: transform 0.3s ease;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
 }
 
-.portfolio-item:hover .portfolio-overlay {
-    transform: translateY(0);
+.experience-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
 }
 
-.portfolio-overlay h3 {
-    margin-bottom: 0.5rem;
-    font-size: 1.3rem;
+.experience-item:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
+.experience-image {
+    flex: 0 0 300px;
+}
+
+.experience-image img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.experience-content {
+    flex: 1;
+}
+
+.experience-content h3 {
+    font-size: 1.5rem;
+    color: ${selectedTheme.secondary};
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.experience-content p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: #666;
 }
 
 /* Resume Section */
@@ -710,8 +730,14 @@ section {
         font-size: 1.2rem;
     }
 
-    .portfolio-grid {
-        grid-template-columns: 1fr;
+    .experience-item,
+    .experience-item:nth-child(even) {
+        flex-direction: column;
+    }
+    
+    .experience-image {
+        flex: none;
+        width: 100%;
     }
 
     section {

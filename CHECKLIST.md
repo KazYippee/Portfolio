@@ -20,31 +20,35 @@
 - [ ] Click "Save"
 - [ ] Note your website URL: `https://your-username.github.io`
 
-## 📝 Phase 3: Content Updates
-- [ ] Edit `index.html` file
-- [ ] Replace "Your Name" with your real name
-- [ ] Replace "Your Professional Title" with your job title
-- [ ] Update the about section with your story
-- [ ] Add your real email address
-- [ ] Add your real phone number  
-- [ ] Add your city and state
-- [ ] Update social media links (LinkedIn, GitHub, etc.)
+## 🎨 Phase 3: Use Portfolio Generator
+- [ ] Open `portfolio-generator.html` in your browser
+- [ ] Fill out personal information section
+- [ ] Add your professional title
+- [ ] Write your about section
+- [ ] Add your skills (use + Add Another Skill button)
+- [ ] Add experience/projects with titles and descriptions
+- [ ] Choose your preferred color theme
+- [ ] Enter your GitHub username
+- [ ] Click "Generate My Portfolio"
+- [ ] Preview your portfolio
+- [ ] Download all generated files
 
-## 🎨 Phase 4: Skills & Experience
-- [ ] Replace skill tags with your actual skills
-- [ ] Update project titles and descriptions
-- [ ] Write compelling project descriptions
-- [ ] Add any additional skills you want to highlight
+## 📝 Phase 4: Content Updates
+- [ ] Replace template files with generated files
+- [ ] Verify all personal information is correct
+- [ ] Check that experience descriptions are meaningful
+- [ ] Ensure contact information is accurate
+- [ ] Test that social media links work
 
 ## 📸 Phase 5: Images
 - [ ] Take or find a professional profile photo
 - [ ] Resize profile photo to 400x400 pixels
 - [ ] Save as `profile-photo.jpg` 
 - [ ] Upload to `images/` folder
-- [ ] Gather 4 project/portfolio images
-- [ ] Resize project images to 600x400 pixels
-- [ ] Save as `project1.jpg`, `project2.jpg`, etc.
-- [ ] Upload all project images to `images/` folder
+- [ ] Gather experience/project images
+- [ ] Resize experience images to 600x400 pixels
+- [ ] Name images as specified in your generator form
+- [ ] Upload all experience images to `images/` folder
 
 ## 📄 Phase 6: Resume
 - [ ] Update your resume
@@ -69,7 +73,7 @@
 - [ ] Verify all text is readable
 - [ ] Ensure images display properly
 - [ ] Test resume viewer on mobile
-- [ ] Check contact section layout
+- [ ] Check experience section layout
 
 ## 🌟 Phase 9: Professional Polish
 - [ ] Ask someone else to review your website
@@ -77,6 +81,7 @@
 - [ ] Ensure all contact information is accurate
 - [ ] Verify professional tone throughout
 - [ ] Make sure all links work correctly
+- [ ] Confirm experience descriptions are compelling
 
 ## 📢 Phase 10: Launch & Share
 - [ ] Bookmark your website URL
@@ -119,21 +124,30 @@
   4. ____________________________________
   5. ____________________________________
 
+**Experience/Projects:**
+- Experience 1 Title: ________________________
+- Experience 1 Description: __________________
+  _________________________________________
+- Experience 2 Title: ________________________
+- Experience 2 Description: __________________
+  _________________________________________
+
 **Files Needed:**
 - [ ] Professional headshot photo
 - [ ] Current resume (PDF)
-- [ ] 4 project/work sample images
-- [ ] List of 4 projects with descriptions
+- [ ] Experience/project images
+- [ ] List of experiences with descriptions
 
 ---
 
 ## ⏰ Estimated Time Investment
 
 - **Setup & Hosting**: 15 minutes
+- **Portfolio Generation**: 20 minutes
 - **Content Writing**: 30 minutes  
 - **Image Preparation**: 45 minutes
 - **Testing & Polish**: 20 minutes
-- **Total**: ~2 hours
+- **Total**: ~2.5 hours
 
 ## 🆘 Who to Contact for Help
 

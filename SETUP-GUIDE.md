@@ -29,20 +29,21 @@ Help team members create professional portfolio websites using GitHub's free hos
 - Folder: "/ (root)"
 - Save
 
-#### 5. Customize Your Content (15 minutes)
-- Click on `index.html` in your repository
-- Click the pencil icon to edit
-- Replace placeholder text with your information:
+#### 5. Use the Portfolio Generator (10 minutes)
+- Open `portfolio-generator.html` in your browser
+- Fill out the form with your information:
   - Name and title
   - About me section
   - Skills list
+  - Experience/projects with descriptions
   - Contact information
-- Commit changes
+- Choose your color theme
+- Download the generated files
 
 #### 6. Add Your Files
 - **Profile Photo**: Upload to `images/` folder as `profile-photo.jpg`
 - **Resume**: Upload to `files/` folder as `resume.pdf`
-- **Project Images**: Upload to `images/` folder as `project1.jpg`, `project2.jpg`, etc.
+- **Experience Images**: Upload to `images/` folder as specified in generator
 
 ## 📸 Image Requirements
 
@@ -52,10 +53,10 @@ Help team members create professional portfolio websites using GitHub's free hos
 - **Name**: `profile-photo.jpg`
 - **Tips**: Professional headshot, good lighting, clean background
 
-### Project Images
+### Experience Images
 - **Size**: 600x400 pixels (landscape)
 - **Format**: JPG or PNG
-- **Names**: `project1.jpg`, `project2.jpg`, `project3.jpg`, `project4.jpg`
+- **Names**: As specified in the portfolio generator form
 - **Tips**: Screenshots of work, project photos, or relevant visuals
 
 ### Resume
@@ -69,27 +70,30 @@ Help team members create professional portfolio websites using GitHub's free hos
 ### Essential Edits (Must Do):
 1. **Personal Information**: Name, title, email, phone
 2. **About Section**: 2-3 sentences about yourself
-3. **Skills**: Replace with your actual skills
-4. **Contact**: Real contact information
-5. **Social Links**: LinkedIn, GitHub profiles
+3. **Experience**: Projects with titles, images, and descriptions
+4. **Skills**: Replace with your actual skills
+5. **Contact**: Real contact information
+6. **Social Links**: LinkedIn, GitHub profiles
 
 ### Optional Edits:
-1. **Colors**: Edit `style.css` to change color scheme
-2. **Sections**: Remove sections you don't need
+1. **Colors**: Use the color picker in the generator
+2. **Sections**: Add/remove experiences as needed
 3. **Add Content**: More projects, testimonials, etc.
 
 ## ⚡ Quick Text Replacements
 
-Search for these in `index.html` and replace:
+Using the Portfolio Generator, you'll input:
 
 ```
-"Your Name" → John Smith
-"Your Professional Title" → Software Developer
-"Brief description about yourself" → Experienced developer with 5 years in web applications
-"your.email@example.com" → john.smith@email.com
-"(123) 456-7890" → (555) 123-4567
-"Your City, State" → San Francisco, CA
-"Skill 1", "Skill 2" → JavaScript, Python, React, etc.
+Name: John Smith
+Title: Software Developer
+About: Experienced developer with 5 years in web applications
+Email: john.smith@email.com
+Phone: (555) 123-4567
+Location: San Francisco, CA
+Skills: JavaScript, Python, React, etc.
+Experience 1: E-Commerce Platform Development
+Description 1: Built a full-stack e-commerce platform...
 ```
 
 ## 🔗 After Setup
@@ -138,6 +142,7 @@ A successful portfolio should have:
 - ✅ Professional profile photo
 - ✅ Accurate contact information
 - ✅ Mobile-friendly display
+- ✅ Meaningful experience descriptions
 
 ## 📈 Next Steps After Launch
 

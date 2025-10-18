@@ -125,7 +125,38 @@
             margin-bottom: 10px;
         }
         
-        .add-skill-btn {
+        .experience-container {
+            border: 1px solid #e1e1e1;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            background: #f9f9f9;
+        }
+        
+        .experience-header {
+            display: flex;
+            justify-content: between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .experience-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        .remove-experience {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        
+        .add-btn {
             background: #3498db;
             color: white;
             border: none;
@@ -133,6 +164,7 @@
             border-radius: 5px;
             cursor: pointer;
             font-size: 14px;
+            margin-top: 10px;
         }
         
         .color-picker-group {
@@ -297,7 +329,38 @@
                             <input type="text" name="skills[]" placeholder="Enter a skill">
                         </div>
                     </div>
-                    <button type="button" class="add-skill-btn" onclick="addSkillInput()">+ Add Another Skill</button>
+                    <button type="button" class="add-btn" onclick="addSkillInput()">+ Add Another Skill</button>
+                </div>
+
+                <!-- Experience/Projects -->
+                <div class="form-section">
+                    <h2 class="section-title">
+                        <span class="section-icon">💼</span>
+                        Experience & Projects
+                    </h2>
+                    
+                    <div id="experienceContainer">
+                        <div class="experience-container">
+                            <div class="experience-header">
+                                <span class="experience-title">Experience 1</span>
+                                <button type="button" class="remove-experience" onclick="this.closest('.experience-container').remove()">Remove</button>
+                            </div>
+                            <div class="form-group">
+                                <label>Experience Title *</label>
+                                <input type="text" name="experienceTitle[]" placeholder="E-Commerce Platform Development" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Image Name</label>
+                                <input type="text" name="experienceImage[]" placeholder="project1.jpg">
+                                <small style="color: #666;">Image should be in images/ folder</small>
+                            </div>
+                            <div class="form-group">
+                                <label>Description *</label>
+                                <textarea name="experienceDescription[]" placeholder="Describe your experience, project, or achievement..." required></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="add-btn" onclick="addExperienceInput()">+ Add Another Experience</button>
                 </div>
                 
                 <!-- Social Media -->
@@ -414,6 +477,34 @@
             `;
             container.appendChild(newInput);
         }
+
+        // Add experience input
+        function addExperienceInput() {
+            const container = document.getElementById('experienceContainer');
+            const experienceCount = container.children.length + 1;
+            const newExperience = document.createElement('div');
+            newExperience.className = 'experience-container';
+            newExperience.innerHTML = `
+                <div class="experience-header">
+                    <span class="experience-title">Experience ${experienceCount}</span>
+                    <button type="button" class="remove-experience" onclick="this.closest('.experience-container').remove()">Remove</button>
+                </div>
+                <div class="form-group">
+                    <label>Experience Title *</label>
+                    <input type="text" name="experienceTitle[]" placeholder="E-Commerce Platform Development" required>
+                </div>
+                <div class="form-group">
+                    <label>Image Name</label>
+                    <input type="text" name="experienceImage[]" placeholder="project${experienceCount}.jpg">
+                    <small style="color: #666;">Image should be in images/ folder</small>
+                </div>
+                <div class="form-group">
+                    <label>Description *</label>
+                    <textarea name="experienceDescription[]" placeholder="Describe your experience, project, or achievement..." required></textarea>
+                </div>
+            `;
+            container.appendChild(newExperience);
+        }
         
         // Form submission
         document.getElementById('portfolioForm').addEventListener('submit', function(e) {
@@ -427,6 +518,15 @@
                 if (key === 'skills[]') {
                     if (!data.skills) data.skills = [];
                     if (value.trim()) data.skills.push(value.trim());
+                } else if (key === 'experienceTitle[]') {
+                    if (!data.experienceTitles) data.experienceTitles = [];
+                    if (value.trim()) data.experienceTitles.push(value.trim());
+                } else if (key === 'experienceImage[]') {
+                    if (!data.experienceImages) data.experienceImages = [];
+                    data.experienceImages.push(value.trim() || 'project1.jpg');
+                } else if (key === 'experienceDescription[]') {
+                    if (!data.experienceDescriptions) data.experienceDescriptions = [];
+                    if (value.trim()) data.experienceDescriptions.push(value.trim());
                 } else {
                     data[key] = value;
                 }
@@ -476,7 +576,7 @@ INSTRUCTIONS:
    - style.css  
    - script.js
 3. Create folders and upload your files:
-   - images/ folder: Add profile-photo.jpg and project images
+   - images/ folder: Add profile-photo.jpg and experience images
    - files/ folder: Add resume.pdf
 4. Enable GitHub Pages in repository settings
 5. Your website will be at: https://${data.githubUsername}.github.io
@@ -488,9 +588,9 @@ FILES INCLUDED:
 
 NEXT STEPS:
 - Add your profile photo as images/profile-photo.jpg
-- Add project images as images/project1.jpg, project2.jpg, etc.
+- Add experience images as specified in your form
 - Upload your resume as files/resume.pdf
-- Customize project descriptions in the HTML
+- Customize further if needed
             `;
             
             const blob = new Blob([instructions], { type: 'text/plain' });
@@ -507,6 +607,15 @@ NEXT STEPS:
                 if (key === 'skills[]') {
                     if (!data.skills) data.skills = [];
                     if (value.trim()) data.skills.push(value.trim());
+                } else if (key === 'experienceTitle[]') {
+                    if (!data.experienceTitles) data.experienceTitles = [];
+                    if (value.trim()) data.experienceTitles.push(value.trim());
+                } else if (key === 'experienceImage[]') {
+                    if (!data.experienceImages) data.experienceImages = [];
+                    data.experienceImages.push(value.trim() || 'project1.jpg');
+                } else if (key === 'experienceDescription[]') {
+                    if (!data.experienceDescriptions) data.experienceDescriptions = [];
+                    if (value.trim()) data.experienceDescriptions.push(value.trim());
                 } else {
                     data[key] = value;
                 }
