@@ -356,6 +356,7 @@ class PortfolioUploader {
                 <li class="nav-item"><a href="#hero" class="nav-link">Home</a></li>
                 <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
                 <li class="nav-item"><a href="#experience" class="nav-link">Experience</a></li>
+                <li class="nav-item"><a href="#resume" class="nav-link">Resume</a></li>
                 <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
         </div>
@@ -370,7 +371,8 @@ class PortfolioUploader {
             <h2>${data.jobTitle}</h2>
             <p class="hero-description">${data.aboutMe}</p>
             <div class="hero-buttons">
-                <a href="files/resume.pdf" class="btn-primary" target="_blank" rel="noopener">📄 View Resume</a>
+                <a href="#resume" class="btn-primary">📄 View Resume</a>
+                <a href="files/resume.pdf" class="btn-secondary" target="_blank" rel="noopener">� Download Resume</a>
                 <a href="#contact" class="btn-secondary">📞 Get In Touch</a>
             </div>
         </div>
@@ -414,6 +416,25 @@ class PortfolioUploader {
                         </div>
                     `;
                 }).join('')}
+            </div>
+        </div>
+    </section>
+
+    <section id="resume" class="resume">
+        <div class="container">
+            <h2 class="section-title">Resume</h2>
+            <div class="resume-content">
+                <div class="resume-actions">
+                    <a href="files/resume.pdf" class="btn-download" target="_blank" rel="noopener">📄 Download PDF</a>
+                    <a href="files/resume.pdf" class="btn-print" onclick="printResume()" rel="noopener">🖨️ Print Resume</a>
+                </div>
+                <div class="resume-viewer">
+                    <iframe src="files/resume.pdf" class="resume-iframe" title="Resume"></iframe>
+                    <div class="resume-fallback">
+                        <p>📄 <strong>Resume Preview</strong></p>
+                        <p>Your browser doesn't support PDF viewing. <a href="files/resume.pdf" target="_blank" rel="noopener">Click here to download and view the resume</a></p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -753,6 +774,89 @@ section {
     color: var(--text-light);
 }
 
+/* Resume Section */
+.resume {
+    background: var(--bg-light);
+}
+
+.resume-content {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.resume-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.btn-download, .btn-print {
+    background: var(--primary-color);
+    color: white;
+    padding: 12px 24px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-download:hover, .btn-print:hover {
+    background: var(--secondary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.resume-viewer {
+    position: relative;
+    width: 100%;
+    height: 800px;
+    border: 2px solid #e1e1e1;
+    border-radius: 10px;
+    overflow: hidden;
+    background: white;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.resume-iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+}
+
+.resume-fallback {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    padding: 2rem;
+    background: var(--bg-color);
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    display: none;
+}
+
+.resume-fallback p {
+    margin-bottom: 1rem;
+    color: var(--text-light);
+}
+
+.resume-fallback a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.resume-fallback a:hover {
+    text-decoration: underline;
+}
+
 /* Contact Section */
 .contact {
     background: var(--bg-light);
@@ -889,6 +993,21 @@ section {
         flex-direction: column;
         align-items: center;
     }
+    
+    .resume-viewer {
+        height: 600px;
+    }
+    
+    .resume-actions {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .btn-download, .btn-print {
+        width: 100%;
+        max-width: 250px;
+        justify-content: center;
+    }
 }
 
 @media (max-width: 480px) {
@@ -966,7 +1085,63 @@ document.addEventListener('DOMContentLoaded', function() {
         img.style.opacity = '0';
         img.style.transition = 'opacity 0.3s ease';
     });
-});`;
+
+    // Resume iframe fallback handling
+    const resumeIframe = document.querySelector('.resume-iframe');
+    const resumeFallback = document.querySelector('.resume-fallback');
+    
+    if (resumeIframe && resumeFallback) {
+        resumeIframe.addEventListener('error', function() {
+            resumeIframe.style.display = 'none';
+            resumeFallback.style.display = 'block';
+        });
+        
+        // Check if iframe loads properly
+        setTimeout(function() {
+            try {
+                if (!resumeIframe.contentDocument && !resumeIframe.contentWindow) {
+                    resumeIframe.style.display = 'none';
+                    resumeFallback.style.display = 'block';
+                }
+            } catch(e) {
+                // Cross-origin error means PDF loaded successfully
+            }
+        }, 3000);
+    }
+});
+
+// Print resume function
+function printResume() {
+    const resumeIframe = document.querySelector('.resume-iframe');
+    if (resumeIframe) {
+        try {
+            resumeIframe.contentWindow.print();
+        } catch(e) {
+            // Fallback: open PDF in new window for printing
+            window.open('files/resume.pdf', '_blank');
+        }
+    } else {
+        window.open('files/resume.pdf', '_blank');
+    }
+}
+
+// Resume section visibility check
+function checkResumeVisibility() {
+    const resumeSection = document.getElementById('resume');
+    if (resumeSection) {
+        const rect = resumeSection.getBoundingClientRect();
+        if (rect.top < window.innerHeight && rect.bottom > 0) {
+            // Resume section is visible, ensure iframe is loaded
+            const iframe = resumeSection.querySelector('.resume-iframe');
+            if (iframe && !iframe.src.includes('files/resume.pdf')) {
+                iframe.src = 'files/resume.pdf';
+            }
+        }
+    }
+}
+
+// Check resume visibility on scroll
+window.addEventListener('scroll', checkResumeVisibility);`;
     }
 
     generateREADME(data) {

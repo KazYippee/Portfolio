@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Generator - Upload & Create</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .generator-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .form-container {
+            padding: 40px;
+        }
+        
+        .form-section {
+            margin-bottom: 30px;
+            padding: 25px;
+            border: 2px solid #f0f0f0;
+            border-radius: 10px;
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-section:focus-within {
+            border-color: #667eea;
+        }
+        
+        .section-title {
+            font-size: 1.4rem;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .section-icon {
+            width: 30px;
+            height: 30px;
+            background: #667eea;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 14px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e1e1e1;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        
+        .file-upload-area {
+            border: 3px dashed #667eea;
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            background: #f8f9ff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 15px 0;
+        }
+        
+        .file-upload-area:hover {
+            background: #f0f2ff;
+            border-color: #5a67d8;
+        }
+        
+        .file-upload-area.dragover {
+            background: #e6f3ff;
+            border-color: #3182ce;
+            transform: scale(1.02);
+        }
+        
+        .file-upload-icon {
+            font-size: 3rem;
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+        
+        .file-upload-text {
+            font-size: 1.1rem;
+            color: #4a5568;
+            margin-bottom: 10px;
+        }
+        
+        .file-upload-hint {
+            font-size: 0.9rem;
+            color: #718096;
+        }
+        
+        .uploaded-file {
+            background: #e6fffa;
+            border: 2px solid #38b2ac;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .uploaded-file-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .uploaded-file-icon {
+            color: #38b2ac;
+            font-size: 1.5rem;
+        }
+        
+        .remove-file {
+            background: #e53e3e;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        
+        .experience-container {
+            border: 1px solid #e1e1e1;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            background: #f9f9f9;
+        }
+        
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .experience-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        .remove-experience {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        
+        .add-btn {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+        
+        .color-picker-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+        }
+        
+        .color-option {
+            text-align: center;
+            cursor: pointer;
+            padding: 15px;
+            border: 3px solid transparent;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .color-option:hover {
+            transform: translateY(-3px);
+        }
+        
+        .color-option.selected {
+            border-color: #333;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .color-preview {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin: 0 auto 10px;
+        }
+        
+        .generate-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+            transition: transform 0.3s ease;
+        }
+        
+        .generate-btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        .generate-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .output-container {
+            display: none;
+            margin-top: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .download-zip-btn {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            font-weight: 600;
+            margin: 15px 10px;
+        }
+        
+        .preview-btn {
+            background: #17a2b8;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            margin: 15px 10px;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background: #e1e1e1;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            width: 0%;
+            transition: width 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 12px;
+        }
+        
+        .file-requirements {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            font-size: 0.9rem;
+        }
+        
+        .file-requirements h4 {
+            color: #856404;
+            margin-bottom: 8px;
+        }
+        
+        .file-requirements ul {
+            color: #856404;
+            margin-left: 20px;
+        }
+        
+        @media (max-width: 768px) {
+            .form-container {
+                padding: 20px;
+            }
+            
+            .color-picker-group {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .download-zip-btn,
+            .preview-btn {
+                width: 100%;
+                margin: 10px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="generator-container">
+        <div class="header">
+            <h1>🌟 Portfolio Generator</h1>
+            <p>Upload your files and create your professional portfolio</p>
+        </div>
+        
+        <div class="form-container">
+            <form id="portfolioForm">
+                <!-- Personal Information -->
+                <div class="form-section">
+                    <h2 class="section-title">
+                        <span class="section-icon">👤</span>
+                        Personal Information
+                    </h2>
+                    
+                    <div class="form-group">
+                        <label for="fullName">Full Name *</label>
+                        <input type="text" id="fullName" name="fullName" required placeholder="John Smith">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="jobTitle">Professional Title *</label>
+                        <input type="text" id="jobTitle" name="jobTitle" required placeholder="Software Developer">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="aboutMe">About Me *</label>
+                        <textarea id="aboutMe" name="aboutMe" required placeholder="Brief description about yourself and what you do..."></textarea>
+                    </div>
+                </div>
+                
+                <!-- Profile Photo Upload -->
+                <div class="form-section">
+                    <h2 class="section-title">
+                        <span class="section-icon">📷</span>
+                        Profile Photo
+                    </h2>
+                    
+                    <div class="file-requirements">
+                        <h4>📋 Photo Requirements:</h4>
+                        <ul>
+                            <li>Square format (400x400 pixels recommended)</li>
+                            <li>Professional headshot</li>
+                            <li>JPG, PNG, or WEBP format</li>
+                            <li>Maximum file size: 5MB</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="file-upload-area" id="profilePhotoUpload">
+                        <div class="file-upload-icon">📷</div>
+                        <div class="file-upload-text">Click to upload or drag your profile photo here</div>
+                        <div class="file-upload-hint">JPG, PNG, WEBP up to 5MB</div>
+                        <input type="file" id="profilePhotoInput" accept="image/*" style="display: none;">
+                    </div>
+                    <div id="profilePhotoPreview"></div>
+                </div>
+                
+                <!-- Contact Information -->
+                <div class="form-section">
+                    <h2 class="section-title">
+                        <span class="section-icon">📞</span>
+                        Contact Information
+                    </h2>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required placeholder="john@example.com">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" placeholder="(555) 123-4567">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="location">Location</label>
+                        <input type="text" id="location" name="location" placeholder="San Francisco, CA">
+                    </div>
+                </div>
+                
+                <!-- Skills -->
+                <div class="form-section">
+                    <h2 class="section-title">
+                        <span class="section-icon">⚡</span>
+                        Skills & Expertise
+                    </h2>
+                    
+                    <div id="skillsContainer">
+                        <div class="form-group skill-input">
+                            <input type="text" name="skills[]" placeholder="Enter a skill">
+                        </div>
+                    </div>
+                    <button type="button" class="add-btn" onclick="addSkillInput()">+ Add Another Skill</button>
+                </div>
+
+                <!-- Experience/Projects -->
+                <div class="form-section">
+                    <h2 class="section-title">
+                        <span class="section-icon">💼</span>
+                        Experience & Projects
+                    </h2>
+                    
+                    <div id="experienceContainer">
+                        <div class="experience-container" data-index="0">
+                            <div class="experience-header">
+                                <span class="experience-title">Experience 1</span>
+                                <button type="button" class="remove-experience" onclick="removeExperience(this)">Remove</button>
+                            </div>
+                            <div class="form-group">
+                                <label>Experience Title *</label>
+                                <input type="text" name="experienceTitle[]" placeholder="E-Commerce Platform Development" required>
+                            </div>
+                            
+                            <div class="file-requirements">
+                                <h4>📋 Image Requirements:</h4>
+                                <ul>
+                                    <li>Landscape format (600x400 pixels recommended)</li>
+                                    <li>Project screenshot, photo, or relevant image</li>
+                                    <li>JPG, PNG, or WEBP format</li>
+                                    <li>Maximum file size: 5MB</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="file-upload-area experience-image-upload" data-index="0">
+                                <div class="file-upload-icon">🖼️</div>
+                                <div class="file-upload-text">Upload image for this experience</div>
+                                <div class="file-upload-hint">JPG, PNG, WEBP up to 5MB</div>
+                                <input type="file" accept="image/*" style="display: none;">
+                            </div>
+                            <div class="experience-image-preview" data-index="0"></div>
+                            
+                            <div class="form-group">
+                                <label>Description *</label>
+                                <textarea name="experienceDescription[]" placeholder="Describe your experience, project, or achievement in detail..." required></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="add-btn" onclick="addExperienceInput()">+ Add Another Experience</button>
+                </div>
+                
+                <!-- Resume Upload -->
+                <div class="form-section">
+                    <h2 class="section-title">
+                        <span class="section-icon">📄</span>
+                        Resume Upload
+                    </h2>
+                    
+                    <div class="file-requirements">
+                        <h4>📋 Resume Requirements:</h4>
+                        <ul>
+                            <li>PDF format only</li>
+                            <li>Current and up-to-date</li>
+                            <li>Professional formatting</li>
+                            <li>Maximum file size: 10MB</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="file-upload-area" id="resumeUpload">
+                        <div class="file-upload-icon">📄</div>
+                        <div class="file-upload-text">Click to upload or drag your resume here</div>
+                        <div class="file-upload-hint">PDF files up to 10MB</div>
+                        <input type="file" id="resumeInput" accept=".pdf" style="display: none;">
+                    </div>
+                    <div id="resumePreview"></div>
+                </div>
+                
+                <!-- Social Media -->
+                <div class="form-section">
+                    <h2 class="section-title">
+                        <span class="section-icon">🔗</span>
+                        Social Media Links
+                    </h2>
+                    
+                    <div class="form-group">
+                        <label for="linkedin">LinkedIn URL</label>
+                        <input type="url" id="linkedin" name="linkedin" placeholder="https://linkedin.com/in/yourname">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="github">GitHub URL</label>
+                        <input type="url" id="github" name="github" placeholder="https://github.com/yourusername">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="twitter">Twitter URL</label>
+                        <input type="url" id="twitter" name="twitter" placeholder="https://twitter.com/yourusername">
+                    </div>
+                </div>
+                
+                <!-- Color Theme -->
+                <div class="form-section">
+                    <h2 class="section-title">
+                        <span class="section-icon">🎨</span>
+                        Choose Your Color Theme
+                    </h2>
+                    
+                    <div class="color-picker-group">
+                        <div class="color-option selected" data-theme="blue">
+                            <div class="color-preview" style="background: linear-gradient(135deg, #3498db, #2980b9);"></div>
+                            <div>Professional Blue</div>
+                        </div>
+                        <div class="color-option" data-theme="green">
+                            <div class="color-preview" style="background: linear-gradient(135deg, #27ae60, #229954);"></div>
+                            <div>Nature Green</div>
+                        </div>
+                        <div class="color-option" data-theme="purple">
+                            <div class="color-preview" style="background: linear-gradient(135deg, #8e44ad, #732d91);"></div>
+                            <div>Creative Purple</div>
+                        </div>
+                        <div class="color-option" data-theme="orange">
+                            <div class="color-preview" style="background: linear-gradient(135deg, #e67e22, #d35400);"></div>
+                            <div>Energetic Orange</div>
+                        </div>
+                        <div class="color-option" data-theme="teal">
+                            <div class="color-preview" style="background: linear-gradient(135deg, #16a085, #138d75);"></div>
+                            <div>Modern Teal</div>
+                        </div>
+                        <div class="color-option" data-theme="red">
+                            <div class="color-preview" style="background: linear-gradient(135deg, #e74c3c, #c0392b);"></div>
+                            <div>Bold Red</div>
+                        </div>
+                    </div>
+                    <input type="hidden" id="selectedTheme" name="theme" value="blue">
+                </div>
+                
+                <!-- GitHub Username -->
+                <div class="form-section">
+                    <h2 class="section-title">
+                        <span class="section-icon">📁</span>
+                        Repository Settings
+                    </h2>
+                    
+                    <div class="form-group">
+                        <label for="githubUsername">GitHub Username *</label>
+                        <input type="text" id="githubUsername" name="githubUsername" required placeholder="yourusername">
+                        <small style="color: #666;">This will create your website at: https://yourusername.github.io</small>
+                    </div>
+                </div>
+                
+                <div class="progress-bar" id="progressBar" style="display: none;">
+                    <div class="progress-fill" id="progressFill">0%</div>
+                </div>
+                
+                <button type="submit" class="generate-btn" id="generateBtn">🚀 Generate My Portfolio</button>
+            </form>
+            
+            <div id="outputContainer" class="output-container">
+                <h3>✅ Your Portfolio is Ready!</h3>
+                <p>Your complete portfolio package has been generated with all your files and images.</p>
+                <div>
+                    <button class="preview-btn" onclick="previewPortfolio()">👀 Preview Portfolio</button>
+                    <a href="#" class="download-zip-btn" id="downloadZip">📦 Download Complete Portfolio (ZIP)</a>
+                </div>
+                <div style="margin-top: 20px; padding: 15px; background: #e8f5e8; border-radius: 8px; text-align: left;">
+                    <h4>📋 What's included in your ZIP file:</h4>
+                    <ul style="margin: 10px 0 0 20px;">
+                        <li>✅ index.html - Your complete website</li>
+                        <li>✅ style.css - Custom styling with your chosen theme</li>
+                        <li>✅ script.js - Interactive features</li>
+                        <li>✅ images/ folder with all your uploaded images</li>
+                        <li>✅ files/ folder with your resume</li>
+                        <li>✅ README.md - Setup instructions</li>
+                    </ul>
+                    <p style="margin-top: 15px; font-weight: 600;">📌 Next steps: Extract the ZIP file and upload all contents to your GitHub repository!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script>
+        // Simple fallback functions if the external JS files aren't available
+        function addSkillInput() {
+            const container = document.getElementById('skillsContainer');
+            const newSkill = document.createElement('div');
+            newSkill.className = 'form-group skill-input';
+            newSkill.innerHTML = `
+                <input type="text" name="skills[]" placeholder="Enter a skill">
+                <button type="button" onclick="removeSkillInput(this)" style="margin-left: 10px; padding: 5px 10px; background: #e74c3c; color: white; border: none; border-radius: 5px; cursor: pointer;">Remove</button>
+            `;
+            container.appendChild(newSkill);
+        }
+
+        function removeSkillInput(button) {
+            button.parentElement.remove();
+        }
+
+        function addExperienceInput() {
+            const container = document.getElementById('experienceContainer');
+            const index = container.children.length;
+            const newExperience = document.createElement('div');
+            newExperience.className = 'experience-container';
+            newExperience.dataset.index = index;
+            newExperience.innerHTML = `
+                <div class="experience-header">
+                    <span class="experience-title">Experience ${index + 1}</span>
+                    <button type="button" class="remove-experience" onclick="removeExperience(this)">Remove</button>
+                </div>
+                <div class="form-group">
+                    <label>Experience Title *</label>
+                    <input type="text" name="experienceTitle[]" placeholder="Project or Job Title" required>
+                </div>
+                
+                <div class="file-requirements">
+                    <h4>📋 Image Requirements:</h4>
+                    <ul>
+                        <li>Landscape format (600x400 pixels recommended)</li>
+                        <li>Project screenshot, photo, or relevant image</li>
+                        <li>JPG, PNG, or WEBP format</li>
+                        <li>Maximum file size: 5MB</li>
+                    </ul>
+                </div>
+                
+                <div class="file-upload-area experience-image-upload" data-index="${index}">
+                    <div class="file-upload-icon">🖼️</div>
+                    <div class="file-upload-text">Upload image for this experience</div>
+                    <div class="file-upload-hint">JPG, PNG, WEBP up to 5MB</div>
+                    <input type="file" accept="image/*" style="display: none;">
+                </div>
+                <div class="experience-image-preview" data-index="${index}"></div>
+                
+                <div class="form-group">
+                    <label>Description *</label>
+                    <textarea name="experienceDescription[]" placeholder="Describe your experience, project, or achievement in detail..." required></textarea>
+                </div>
+            `;
+            container.appendChild(newExperience);
+        }
+
+        function removeExperience(button) {
+            button.closest('.experience-container').remove();
+        }
+
+        function previewPortfolio() {
+            alert('Portfolio preview feature - would show generated portfolio in new window');
+        }
+
+        // Color theme selection
+        document.querySelectorAll('.color-option').forEach(option => {
+            option.addEventListener('click', () => {
+                document.querySelectorAll('.color-option').forEach(opt => opt.classList.remove('selected'));
+                option.classList.add('selected');
+                document.getElementById('selectedTheme').value = option.dataset.theme;
+            });
+        });
+
+        // Basic form submission
+        document.getElementById('portfolioForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const generateBtn = document.getElementById('generateBtn');
+            const progressBar = document.getElementById('progressBar');
+            const outputContainer = document.getElementById('outputContainer');
+            
+            generateBtn.disabled = true;
+            generateBtn.textContent = '⏳ Generating...';
+            progressBar.style.display = 'block';
+            
+            // Simulate progress
+            let progress = 0;
+            const interval = setInterval(() => {
+                progress += 10;
+                document.getElementById('progressFill').style.width = progress + '%';
+                document.getElementById('progressFill').textContent = progress + '%';
+                
+                if (progress >= 100) {
+                    clearInterval(interval);
+                    setTimeout(() => {
+                        progressBar.style.display = 'none';
+                        outputContainer.style.display = 'block';
+                        generateBtn.disabled = false;
+                        generateBtn.textContent = '🚀 Generate My Portfolio';
+                        
+                        // Create simple download
+                        const link = document.createElement('a');
+                        link.href = '#';
+                        link.download = 'portfolio-files.txt';
+                        document.getElementById('downloadZip').href = link.href;
+                        
+                        outputContainer.scrollIntoView({ behavior: 'smooth' });
+                    }, 500);
+                }
+            }, 200);
+        });
+    </script>
+    <script src="portfolio-generator.js"></script>
+    <script src="portfolio-uploader.js"></script>
+</body>
+</html>
